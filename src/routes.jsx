@@ -5,6 +5,7 @@ import DonorCreate from './pages/Donor/Register'
 import DonorList from './pages/Donor/List'
 import DonaratyList from './pages/Donatary/List'
 import DonaratyCreate from './pages/Donatary/Register'
+import NotFound from './pages/NotFoud'
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,17 @@ const router = createBrowserRouter([
 
       { path: 'donatary', element: <DonaratyList /> },
       { path: 'donatary-register/:id?', element: <DonaratyCreate /> },
+
+      // { path: 'donation-received', element: '' },
+      // { path: 'donation-received/:id', element: '' },
+
+      // { path: 'donation-delivered', element: '' },
+      // { path: 'donation-delivered/:id', element: '' },
+
+      // { path: 'family', element: '' },
+      // { path: 'family-register/:id', element: '' },
+
+      { path: '*', element: <NotFound /> },
     ],
   },
 ])
