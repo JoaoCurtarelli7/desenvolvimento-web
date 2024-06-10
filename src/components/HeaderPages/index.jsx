@@ -6,7 +6,7 @@ import './styles.less'
 const menuItems = [
   { path: '/', label: 'Home' },
   { path: '/donor', label: 'Doadores' },
-  { path: '/', label: 'Donatários' },
+  { path: '/donatary', label: 'Donatários' },
   { path: '/', label: 'Famílias' },
   { path: '/', label: 'Doações Recebidas' },
   { path: '/', label: 'Doações Entregues' },
