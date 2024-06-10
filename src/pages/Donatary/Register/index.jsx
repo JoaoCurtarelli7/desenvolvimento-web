@@ -1,15 +1,13 @@
 import { Button, Col, Form, Input, Row } from 'antd'
-import { useForm } from 'antd/lib/form/Form'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Loader from '../../../components/Loading'
 import TitleCreateList from '../../../components/TitleCreate'
 import api from '../../../lib/api'
+import './styles.css'
 
-import './styles.less'
-
-function DonorCreate() {
-  const [form] = useForm()
+function DonaratyCreate() {
+  const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
 
   const { id } = useParams()
@@ -19,7 +17,7 @@ function DonorCreate() {
   useEffect(() => {
     if (id) {
       api
-        .get(`/donor/${id}`)
+        .get(`/donatary/${id}`)
         .then((response) => {
           const { name, cpf, dateRegistration } = response.data
 
@@ -39,8 +37,8 @@ function DonorCreate() {
 
   const onFinish = async (values) => {
     setLoading(true)
-
     try {
+      console.log(values.dateRegistration)
       const sendValues = {
         name: values.name,
         cpf: values.cpf,
@@ -48,12 +46,12 @@ function DonorCreate() {
       }
 
       if (id) {
-        await api.put(`/donor/${id}`, sendValues)
+        await api.put(`/donatary/${id}`, sendValues)
       } else {
-        await api.post('/donor', sendValues)
+        await api.post('/donatary', sendValues)
       }
 
-      navigate('/donor')
+      navigate('/donatary')
     } catch (error) {
       console.log(error)
     } finally {
@@ -67,15 +65,15 @@ function DonorCreate() {
 
       <Form form={form} onFinish={onFinish}>
         <TitleCreateList
-          textTitle="Cadastro de Doador"
-          route="/donor"
+          textTitle="Cadastro de Donatários"
+          route="/donatary"
           create={true}
         />
 
         <Row gutter={[20, 16]}>
           <Col span={10} offset={2}>
             <Form.Item
-              label="Nome"
+              label="Digite o Nome"
               name="name"
               labelCol={{ span: 24 }}
               wrapperCol={{ span: 24 }}
@@ -84,6 +82,7 @@ function DonorCreate() {
               <Input size="large" />
             </Form.Item>
           </Col>
+
           <Col span={10}>
             <Form.Item
               label="CPF"
@@ -123,4 +122,4 @@ function DonorCreate() {
   )
 }
 
-export default DonorCreate
+export default DonaratyCreate
